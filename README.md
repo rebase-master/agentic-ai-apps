@@ -1,9 +1,6 @@
 # 🛒 Orders Chatbot — LangGraph Custom Agent Example
 
-This project implements an **Orders Chatbot** using **LangGraph** (built on LangChain) that can **retrieve** and **update** laptop order data via function calls and agent orchestration.  
-It follows the structure and code from the  
-[`code_04_XX Orders Chatbot with custom agent`](https://github.com/LinkedInLearning/build-ai-agents-and-chatbots-with-langgraph-2021112/blob/main/code_04_XX%20Orders%20Chatbot%20with%20custom%20agent.ipynb)  
-notebook of the [LinkedIn Learning LangGraph repository](https://github.com/LinkedInLearning/build-ai-agents-and-chatbots-with-langgraph-2021112).
+This project implements an **Orders Chatbot** using **LangGraph** (built on LangChain) that can **retrieve** and **update** laptop order data via function calls and agent orchestration.
 
 
 ![Orders Chatbot Architecture](images/order_chatbot.png)
@@ -14,13 +11,14 @@ notebook of the [LinkedIn Learning LangGraph repository](https://github.com/Link
 ```
 .
 ├── agentic_ai_apps/
-│ ├── .ipynb_checkpoints
 │ └── data/
-│ └── Laptop Order.csv
+│     └── Laptop Order.csv
 ├── images/
-│ ├── order_chatbot.png
-| .env
-└── README.md
+│     └── order_chatbot.png
+├── .env
+├── .gitignore
+├── orders_chatbot_with_custom_agent-checkpoint.ipynb
+├── README.md
 ```
 
 ---
@@ -40,9 +38,15 @@ git checkout orders-chatbot-with-custom-agent
 ```
 ### 3. Create a virtual environment
 ```bash
-python3 -m venv venv
-source venv/bin/activate      # macOS/Linux
-venv\Scripts\activate         # Windows
+# Create a virtual environment
+python3 -m venv jupyter_env
+
+# Activate it
+source jupyter_env/bin/activate      # macOS/Linux
+venv\Scripts\activate                # Windows
+
+# Install jupyter
+pip install jupyter
 ```
 
 ### 4. Configure environment variables
@@ -60,20 +64,22 @@ jupyter notebook
 ## 🧠 How It Works
 ### 🔹 Overview
 The chatbot allows users to search and update laptop orders through a natural-language interface.
-When a user makes a request (e.g., “Show me order details for ORD-7311”), the chatbot interprets the intent and uses a custom agent built with LangGraph to execute structured operations via function calls.
+When a user makes a request (e.g., “Show me order details for ORD-7311”), the chatbot interprets 
+the intent and uses a custom agent built with LangGraph to execute structured operations via 
+function calls. For data storage, an RDBMS can be used but for instructional purposes, Python Dataframes 
+can also be used for quickly explaining the workflow.
 
 ### 🧩 Architecture
-sql
-Copy code
+```sql
 User → Orders Chatbot → Orders Agent → Function Tools → Laptop Orders RDBMS
-
+```
 ### 🔧 Components
-| Component               | Description                                                                     |
-| ----------------------- | ------------------------------------------------------------------------------- |
-| **Orders Chatbot**      | Main conversational interface handling user messages.                           |
-| **Orders Agent**        | Interprets user intent and decides which function to call.                      |
-| **Function Tools**      | Implement structured operations like `get_order_details` and `update_quantity`. |
-| **Laptop Orders RDBMS** | Database storing laptop order records.                                          |
+| Component               | Description                                                                                           |
+| ----------------------- |-------------------------------------------------------------------------------------------------------|
+| **Orders Chatbot**      | Main conversational interface handling user messages.                                                 |
+| **Orders Agent**        | Interprets user intent and decides which function to call.                                            |
+| **Function Tools**      | Implement structured operations like `get_order_details` and `update_quantity`.                       |
+| **Laptop Orders RDBMS** | Database storing laptop order records OR use Python Dataframes <br/>for quick explanation of the concepts. |
 
 ### 🧩 Function Tools
 | Function                              | Description                             | Parameters                       |
