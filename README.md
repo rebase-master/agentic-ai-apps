@@ -12,9 +12,10 @@ This project implements an **Orders Chatbot** using **LangGraph** (built on Lang
 .
 ├── agentic_ai_apps/
 │ └── data/
-│     └── Laptop Order.csv
+│     └── Laptop Orders.csv
 ├── images/
 │     └── order_chatbot.png
+│     └── graph_for_orders_agent.png
 ├── .env
 ├── .gitignore
 ├── orders_chatbot_with_custom_agent-checkpoint.ipynb
@@ -62,6 +63,9 @@ jupyter notebook
 ---
 
 ## 🧠 How It Works
+
+![Orders Chatbot Architecture](images/graph_for_orders_agent.png)
+
 ### 🔹 Overview
 The chatbot allows users to search and update laptop orders through a natural-language interface.
 When a user makes a request (e.g., “Show me order details for ORD-7311”), the chatbot interprets 
@@ -105,7 +109,7 @@ User → Orders Chatbot → Orders Agent → Function Tools → Laptop Orders RD
 
 ### 🔐 Safety & Extensibility
 
-- All database access is isolated in the tools.py or db_client.py layer.
+- All database access can be isolated in the tools.py or db_client.py layer.
 - Adding new actions (like canceling or tracking orders) is as simple as defining new functions and registering them with the agent.
 - Optionally, human-in-the-loop nodes can be inserted for approval workflows.
 
